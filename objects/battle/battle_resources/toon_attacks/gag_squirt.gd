@@ -18,6 +18,7 @@ func apply_debuff(target: Cog) -> void:
 	var new_effect: StatBoost = DEBUFF.duplicate()
 	new_effect.target = target
 	new_effect.boost = get_player_stats().get_stat('squirt_defense_boost')
+	target.drenched = true
 	manager.add_status_effect(new_effect)
 
 func get_player_stats() -> PlayerStats:

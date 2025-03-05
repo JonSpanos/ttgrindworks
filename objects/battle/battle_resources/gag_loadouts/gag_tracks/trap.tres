@@ -118,5 +118,5 @@ one_time_use = false
 script = ExtResource("22_lrt3n")
 track_type = 1
 track_name = "Trap"
-track_color = Color(0.988235, 0.992157, 0.333333, 1)
+track_color = Color(1, 0.21268, 0.159696, 1)
 gags = Array[ExtResource("1_jr3yh")]([SubResource("Resource_73lf0"), SubResource("Resource_dut7k"), SubResource("Resource_f0nrw"), SubResource("Resource_nxdef"), SubResource("Resource_w688w"), SubResource("Resource_qce66"), SubResource("Resource_tl7qg")])

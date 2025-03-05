@@ -1,6 +1,5 @@
 extends StatBoost
 
-
 func combine(effect : StatusEffect) -> bool:
 	if rounds <= effect.rounds:
 		rounds = effect.rounds

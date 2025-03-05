@@ -66,6 +66,7 @@ var head_node: Node3D
 
 # Battle values
 var lured := false
+var drenched := false
 var stunned := false
 var trap: GagTrap
 
