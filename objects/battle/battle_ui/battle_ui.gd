@@ -61,7 +61,7 @@ func gag_selected(gag: BattleAction) -> void:
 	match gag.target_type:
 		BattleAction.ActionTarget.SELF:
 			gag.targets = [Util.get_player()]
-		BattleAction.ActionTarget.ENEMY, BattleAction.ActionTarget.ENEMY_SPLASH, BattleAction.ActionTarget.ZAP:
+		BattleAction.ActionTarget.ENEMY, BattleAction.ActionTarget.ENEMY_SPLASH:
 			# Skip choice UI if only one Cog
 			if get_parent().cogs.size() == 1:
 				gag.targets = get_parent().cogs.duplicate()
@@ -84,8 +84,6 @@ func gag_selected(gag: BattleAction) -> void:
 					# Set the target
 					if gag.target_type == BattleAction.ActionTarget.ENEMY_SPLASH:
 						gag.reassess_splash_targets(selection, get_parent())
-					elif gag.target_type == BattleAction.ActionTarget.ZAP:
-						gag.reassess_zap_targets(selection, get_parent())
 					else:
 						gag.targets = [get_parent().cogs[selection]]
 					# Swap UIs back

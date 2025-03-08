@@ -80,14 +80,12 @@ func refresh():
 				button.disable()
 			elif (gag is GagTrap) and ((all_cogs_lured() and Util.get_player().trap_needs_lure) or all_cogs_trapped()):
 				button.disable()
-			elif (gag is GagZap) and not any_cog_drenched():
-				button.disable()
 			else:
 				button.enable()
 		else:
 			gag_buttons[i].hide()
 	
-	point_label.text = "Points: " + str(Util.get_player().stats.gag_balance[track.track_name]) + '/' + str(Util.get_player().stats.gag_cap)
+	point_label.text = "Points: " + str(roundi(Util.get_player().stats.gag_balance[track.track_name])) + '/' + str(roundi(Util.get_player().stats.gag_cap))
 	if Util.get_player().stats.gag_balance[track.track_name] > Util.get_player().stats.gag_cap:
 		point_label.self_modulate = WARNING_COLOR
 	else:
@@ -118,15 +116,6 @@ func all_cogs_trapped() -> bool:
 			all_trapped = false
 			break
 	return all_trapped
-
-func any_cog_drenched() -> bool:
-	var battle_manager: BattleManager = ui_root.get_parent()
-	var any_drenched := false
-	for effect in battle_manager.status_effects:
-		if effect.get_status_name() == "Drenched":
-			any_drenched = true
-			break
-	return any_drenched
 
 func grey_out() -> void:
 	point_label.hide()
