@@ -80,6 +80,8 @@ func refresh():
 				button.disable()
 			elif (gag is GagTrap) and ((all_cogs_lured() and Util.get_player().trap_needs_lure) or all_cogs_trapped()):
 				button.disable()
+			elif (gag is GagZap) and not any_cog_drenched():
+				button.disable()
 			else:
 				button.enable()
 		else:
@@ -107,6 +109,15 @@ func all_cogs_lured() -> bool:
 			all_lured = false
 			break
 	return all_lured
+
+func any_cog_drenched() -> bool:
+	var battle_manager: BattleManager = ui_root.get_parent()
+	var any_drenched := false
+	for effect in battle_manager.status_effects:
+		if effect.get_status_name() == "Drenched":
+			any_drenched = true
+			break
+	return any_drenched
 
 func all_cogs_trapped() -> bool:
 	var battle_manager: BattleManager = ui_root.get_parent()

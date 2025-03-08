@@ -117,11 +117,12 @@ func import_cog_head_textures() -> void:
 ## Gag Colors
 func get_gag_color(gag : ToonAttack) -> Color:
 	if gag is GagSquirt: return Color('f733b8')
-	elif gag is GagTrap: return Color('fcfd55')
+	elif gag is GagTrap: return Color('ff3629')
 	elif gag is GagLure: return Color('489f3f')
 	elif gag is GagSound: return Color('4f63d5')
 	elif gag is GagThrow: return Color('ed8a42')
 	elif gag is GagDrop: return Color('35f4ff')
+	elif gag is GagZap: return Color('fcfd55')
 	return Color.WHITE
 
 ## DNA:

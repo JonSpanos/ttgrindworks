@@ -37,6 +37,8 @@ func reposition_buttons(cogs: int):
 				newbutton.disabled = true
 			else:
 				newbutton.disabled = false
+		elif gag is GagZap and not cog.drenched:
+			newbutton.disabled = true
 	
 	$GagPanel/GagImage.set_texture(gag.icon)
 	$GagPanel.self_modulate = Globals.get_gag_color(gag)

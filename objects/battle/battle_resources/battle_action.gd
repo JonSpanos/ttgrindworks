@@ -10,6 +10,7 @@ enum ActionTarget {
 	NONE,
 	ALLY_SPLASH,
 	ENEMY_SPLASH,
+	ZAP
 }
 @export var target_type := ActionTarget.ENEMY
 @export var action_name: String = "Attack"
@@ -54,6 +55,28 @@ func set_camera_angle(transform: Transform3D) -> void:
 	if manager.battle_node.battle_cam.get_parent() != manager.battle_node:
 		manager.battle_node.battle_cam.reparent(manager.battle_node)
 	manager.battle_node.battle_cam.transform = transform
+
+func reassess_zap_targets(selection: int, _manager: BattleManager) -> void:
+	if target_type != ActionTarget.ZAP:
+		return
+	var new_targets: Array = [_manager.cogs[selection]]
+	main_target = _manager.cogs[selection]
+	var indices: Array = []
+	if selection == 0 or not _manager.cogs[selection-1].drenched:
+		# -Xxx (X is main target, x is jumped zap
+		indices = [1, 2]
+	else:
+		# xxX- (X is main target, x is jumped zap)
+		indices = [-1, -2]
+	
+	# Now apply the indices
+	for idx: int in indices:
+		var adjust_idx: int = selection + idx
+		if adjust_idx < 0 or adjust_idx >= _manager.cogs.size():
+			continue
+		new_targets.append(_manager.cogs[adjust_idx])
+	# Now set the targets!
+	targets = new_targets
 
 func reassess_splash_targets(selection: int, _manager: BattleManager) -> void:
 	if target_type != ActionTarget.ENEMY_SPLASH:
